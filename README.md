@@ -5,7 +5,7 @@ Home: https://github.com/openscm/openscm-units
 
 Package license: BSD-3-Clause
 
-Feedstock license: BSD 3-Clause
+Feedstock license: BSD-3-Clause
 
 Summary: Units for use with simple climate modelling
 
