@@ -5,11 +5,13 @@ Home: https://github.com/openscm/openscm-units
 
 Package license: BSD-3-Clause
 
-Feedstock license: BSD-3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/openscm-units-feedstock/blob/master/LICENSE.txt)
 
 Summary: Units for use with simple climate modelling
 
+Development: https://github.com/openscm/openscm-units
 
+Documentation: https://openscm-units.readthedocs.io/en/latest/
 
 Current build status
 ====================
