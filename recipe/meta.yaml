@@ -20,14 +20,18 @@ requirements:
     - pip
   run:
     - python >=3.6
+    - globalwarmingpotentials
     - pandas
     - pint
 
 test:
   imports:
     - openscm_units
-
-  commands: python -c "import openscm_units; ur = openscm_units.unit_registry; ur.enable_contexts('AR5GWP100'); assert openscm_units.__version__ == '{{ version }}'"
+  requires:
+    - pip
+  commands:
+    - pip check
+    - python -c "import openscm_units; ur = openscm_units.unit_registry; ur.enable_contexts('AR5GWP100'); assert openscm_units.__version__ == '{{ version }}'"
 
 about:
   home: https://github.com/openscm/openscm-units
