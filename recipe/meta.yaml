@@ -18,8 +18,9 @@ requirements:
   host:
     - python
     - pip
+    - poetry
   run:
-    - python >=3.6
+    - python >=3.9
     - globalwarmingpotentials
     - pandas
     - pint
