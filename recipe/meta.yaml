@@ -1,13 +1,13 @@
 {% set name = "openscm-units" %}
-{% set version = "0.5.2" %}
+{% set version = "0.5.4" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: a9e199ee3356cb5ce4f95a11b13d5411cd172c108bb76267be052070947e9aef
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: 76429369e221084b6b41757369c536f852abc44679070f600ed72124fd58f9f9
 
 build:
   number: 0
