@@ -59,6 +59,7 @@ outputs:
 
       run:
         - python
+        - {{ pin_subpackage('openscm-units', exact=True) }}
         - {{ pin_compatible('pint', min_pin='0.24.3', max_pin='0.24.4') }}
         - {{ pin_compatible('globalwarmingpotentials', min_pin='0.11.1', max_pin='0.11.2') }}
         - {{ pin_compatible('numpy', min_pin='2.0.2', max_pin='2.0.3') }}
