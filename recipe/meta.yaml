@@ -1,49 +1,98 @@
 {% set name = "openscm-units" %}
-{% set version = "0.6.1" %}
+{% set version = "0.6.3" %}
 
 package:
-  name: {{ name|lower }}
+  name: openscm-units-suite
   version: {{ version }}
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
-  sha256: 1e13fe01ba57b6595fd6d08b93d671ba326e3d5ff6b91960b474e53d345e9f4a
+  sha256: 36f4e62b7622498df82895fbb89a63e19e2e686a74ad28e0679dd8f46d3c59b9
 
 build:
   number: 0
-  noarch: python
-  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv
 
 requirements:
   host:
     - python
-    - pip
-    - poetry
-  run:
-    - python >=3.9
-    - globalwarmingpotentials
-    - pandas
-    - pint
 
-test:
-  imports:
-    - openscm_units
-  requires:
-    - pip
-  commands:
-    - pip check
-    - python -c "import openscm_units; ur = openscm_units.unit_registry; ur.enable_contexts('AR5GWP100'); assert openscm_units.__version__ == '{{ version }}'"
+outputs:
+  - name: openscm-units
+    build:
+      noarch: python
+      script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+    requirements:
+      host:
+        - python >=3.9, <3.13  # Until pint isn't broken
+        - pip
+        - pdm-backend
+
+      run:
+        - python >=3.9, <3.13  # Until pint isn't broken
+        - globalwarmingpotentials
+        - numpy
+        - pandas
+        - pint
+
+    test:
+      imports:
+        - openscm_units
+      commands:
+        - pip check
+        - python -c "import openscm_units; ur = openscm_units.unit_registry; ur.enable_contexts('AR5GWP100'); assert openscm_units.__version__ == '{{ version }}'"
+      requires:
+        - pip
+
+  # A locked version, which will help avoid installation headaches
+  # (e.g. dependency updates with breaking changes)
+  # for those who just want the CLI.
+  - name: openscm-units-locked
+    build:
+      noarch: python
+
+    requirements:
+      host:
+        - python >=3.9, <3.13  # Until pint isn't broken
+        - pip
+        - pdm-backend
+
+      run:
+        - python >=3.9, <3.13  # Until pint isn't broken
+        - {{ pin_subpackage('openscm-units', exact=True) }}
+        - {{ pin_compatible('pint', min_pin='0.24.3', max_pin='0.24.4') }}
+        - {{ pin_compatible('globalwarmingpotentials', min_pin='0.11.1', max_pin='0.11.2') }}
+        - {{ pin_compatible('numpy', min_pin='2.0.2', max_pin='2.0.3') }}
+        - {{ pin_compatible('pandas', min_pin='2.2.3', max_pin='2.2.4') }}
+
+    test:
+      imports:
+        - openscm_units
+      commands:
+        - pip check
+        - python -c "import openscm_units; ur = openscm_units.unit_registry; ur.enable_contexts('AR5GWP100'); assert openscm_units.__version__ == '{{ version }}'"
+      requires:
+        - pip
 
 about:
-  home: https://github.com/openscm/openscm-units
-  license: BSD-3-Clause
-  license_family: BSD
-  license_file: LICENCE
+  home: https://openscm-units.readthedocs.io
   summary: Units for use with simple climate modelling
-  doc_url: https://openscm-units.readthedocs.io/en/latest/
-  dev_url: https://github.com/openscm/openscm-units
+  description: |
+    OpenSCM units is a unit-handling library,
+    specifically focussed on climate-related units.
+    It is provided, by default, as a library.
+    If you wish to use it as an application,
+    we recommend installing the locked version of the package,
+    i.e. `openscm-units-locked`,
+    because this pins the versions of key dependencies
+    (which avoids breakages because of updates to dependencies).
+  license: BSD-3-Clause
+  license_file: LICENCE
+  doc_url: https://openscm-units.readthedocs.io
+  dev_url: https://github.com/openscm/openscm_units
 
 extra:
+  feedstock-name: openscm-units
   recipe-maintainers:
     - znicholls
     - lewisjared
