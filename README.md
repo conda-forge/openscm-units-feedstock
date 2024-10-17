@@ -3,15 +3,25 @@ About openscm-units-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/openscm-units-feedstock/blob/main/LICENSE.txt)
 
-Home: https://github.com/openscm/openscm-units
+Home: https://openscm-units.readthedocs.io
 
 Package license: BSD-3-Clause
 
 Summary: Units for use with simple climate modelling
 
-Development: https://github.com/openscm/openscm-units
+Development: https://github.com/openscm/openscm_units
 
-Documentation: https://openscm-units.readthedocs.io/en/latest/
+Documentation: https://openscm-units.readthedocs.io
+
+OpenSCM units is a unit-handling library,
+specifically focussed on climate-related units.
+It is provided, by default, as a library.
+If you wish to use it as an application,
+we recommend installing the locked version of the package,
+i.e. `openscm-units-locked`,
+because this pins the versions of key dependencies
+(which avoids breakages because of updates to dependencies).
+
 
 Current build status
 ====================
@@ -32,6 +42,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-openscm--units-green.svg)](https://anaconda.org/conda-forge/openscm-units) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/openscm-units.svg)](https://anaconda.org/conda-forge/openscm-units) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/openscm-units.svg)](https://anaconda.org/conda-forge/openscm-units) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/openscm-units.svg)](https://anaconda.org/conda-forge/openscm-units) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-openscm--units--locked-green.svg)](https://anaconda.org/conda-forge/openscm-units-locked) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/openscm-units-locked.svg)](https://anaconda.org/conda-forge/openscm-units-locked) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/openscm-units-locked.svg)](https://anaconda.org/conda-forge/openscm-units-locked) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/openscm-units-locked.svg)](https://anaconda.org/conda-forge/openscm-units-locked) |
 
 Installing openscm-units
 ========================
@@ -43,16 +54,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `openscm-units` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `openscm-units, openscm-units-locked` can be installed with `conda`:
 
 ```
-conda install openscm-units
+conda install openscm-units openscm-units-locked
 ```
 
 or with `mamba`:
 
 ```
-mamba install openscm-units
+mamba install openscm-units openscm-units-locked
 ```
 
 It is possible to list all of the versions of `openscm-units` available on your platform with `conda`:
