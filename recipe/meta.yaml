@@ -24,12 +24,12 @@ outputs:
 
     requirements:
       host:
-        - python >=3.9
+        - python >=3.9, <3.13  # Until pint isn't broken
         - pip
         - pdm-backend
 
       run:
-        - python >=3.9
+        - python >=3.9, <3.13  # Until pint isn't broken
         - globalwarmingpotentials
         - numpy
         - pandas
@@ -53,12 +53,12 @@ outputs:
 
     requirements:
       host:
-        - python
+        - python >=3.9, <3.13  # Until pint isn't broken
         - pip
         - pdm-backend
 
       run:
-        - python
+        - python >=3.9, <3.13  # Until pint isn't broken
         - {{ pin_subpackage('openscm-units', exact=True) }}
         - {{ pin_compatible('pint', min_pin='0.24.3', max_pin='0.24.4') }}
         - {{ pin_compatible('globalwarmingpotentials', min_pin='0.11.1', max_pin='0.11.2') }}
