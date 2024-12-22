@@ -6,11 +6,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
   sha256: 36f4e62b7622498df82895fbb89a63e19e2e686a74ad28e0679dd8f46d3c59b9
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   host:
@@ -24,12 +24,12 @@ outputs:
 
     requirements:
       host:
-        - python >=3.9, <3.13  # Until pint isn't broken
+        - python {{ python_min }}  # Until pint isn't broken
         - pip
         - pdm-backend
 
       run:
-        - python >=3.9, <3.13  # Until pint isn't broken
+        - python >={{ python_min }},<3.13  # Until pint isn't broken
         - globalwarmingpotentials
         - numpy
         - pandas
@@ -53,12 +53,12 @@ outputs:
 
     requirements:
       host:
-        - python >=3.9, <3.13  # Until pint isn't broken
+        - python {{ python_min }}  # Until pint isn't broken
         - pip
         - pdm-backend
 
       run:
-        - python >=3.9, <3.13  # Until pint isn't broken
+        - python >={{ python_min }},<3.13  # Until pint isn't broken
         - {{ pin_subpackage('openscm-units', exact=True) }}
         - {{ pin_compatible('pint', min_pin='0.24.3', max_pin='0.24.4') }}
         - {{ pin_compatible('globalwarmingpotentials', min_pin='0.11.1', max_pin='0.11.2') }}
@@ -73,6 +73,7 @@ outputs:
         - python -c "import openscm_units; ur = openscm_units.unit_registry; ur.enable_contexts('AR5GWP100'); assert openscm_units.__version__ == '{{ version }}'"
       requires:
         - pip
+        - python {{ python_min }}
 
 about:
   home: https://openscm-units.readthedocs.io
