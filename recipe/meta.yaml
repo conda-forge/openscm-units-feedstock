@@ -10,7 +10,7 @@ source:
   sha256: 36f4e62b7622498df82895fbb89a63e19e2e686a74ad28e0679dd8f46d3c59b9
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   host:
@@ -43,6 +43,7 @@ outputs:
         - python -c "import openscm_units; ur = openscm_units.unit_registry; ur.enable_contexts('AR5GWP100'); assert openscm_units.__version__ == '{{ version }}'"
       requires:
         - pip
+        - python {{ python_min }}
 
   # A locked version, which will help avoid installation headaches
   # (e.g. dependency updates with breaking changes)
