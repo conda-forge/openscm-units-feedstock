@@ -43,6 +43,7 @@ outputs:
         - python -c "import openscm_units; ur = openscm_units.unit_registry; ur.enable_contexts('AR5GWP100'); assert openscm_units.__version__ == '{{ version }}'"
       requires:
         - pip
+        - python {{ python_min }}
 
   # A locked version, which will help avoid installation headaches
   # (e.g. dependency updates with breaking changes)
