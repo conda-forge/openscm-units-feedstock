@@ -6,11 +6,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
+  url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
   sha256: 36f4e62b7622498df82895fbb89a63e19e2e686a74ad28e0679dd8f46d3c59b9
 
 build:
-  number: 2
+  number: 3
 
 requirements:
   host:
